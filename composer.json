@@ -1,0 +1,12 @@
+{
+    "name": "src/app",
+    "description": "exerc\u0000cios elementar de consulta de database mysql",
+    "require": {},
+    
+    "autoload": {
+        "psr-4": {
+            "src\\": "src"
+        }
+    }
+    
+}
