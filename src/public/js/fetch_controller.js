@@ -1,17 +1,21 @@
 'use sctrict'
 
 const RegisterUser = {
-    
+
     validation: function (form) {
-        let cont = 0;
+        let i = 0;
+        let controller = true
         const formData = new FormData(form)
         formData.forEach((element) => {
             if (element == '') {
-                form[cont].classList.add('danger-msg')
-                cont++
+                form[i].classList.add('danger-msg')
+                controller = false
+            } else {
+                form[i].classList.remove('danger-msg')
             }
+            i++
         })
-        return cont
+        return controller
     },
 
     registerUser: function(URL, form) {
@@ -34,7 +38,7 @@ const elForm = document.querySelector('#form-register')
 elForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const URL = './src/controller/controller.php'
-    if (!RegisterUser.validation(elForm)) {
+    if (RegisterUser.validation(elForm)) {
         RegisterUser.registerUser(URL, elForm)
     }
 })
