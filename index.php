@@ -15,7 +15,7 @@
     
         <div class="row d-flex justify-content-center">
             <div class="col col-6">
-                <form action="#" method="POST">
+                <form id="form-register" method="POST">
                     <div class="form-group">
                         <input type="name" name="name" id="name" class="form-control" placeholder="seu nome aqui">
                     </div>

@@ -2,11 +2,13 @@
 namespace src\Controller;
 
 class Controller {
-    private $msg;
     
     public function index () {
-        echo 'funcionando';
+        echo $_POST['name'];
     }
 }
+
+$controller  = new Controller();
+$controller->index();
 
 ?>

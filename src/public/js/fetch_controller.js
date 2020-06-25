@@ -1,25 +1,41 @@
 'use sctrict'
 
 const RegisterUser = {
-    validation: function (URL, ...args) {
-        let aux = 1
-        args.forEach(element => {
-            if (element.value == '') {
-                element.classList.add('msg-changer')
-                aux = 0
+    
+    validation: function (form) {
+        let cont = 0;
+        const formData = new FormData(form)
+        formData.forEach((element) => {
+            if (element == '') {
+                form[cont].classList.add('danger-msg')
+                cont++
             }
         })
+        return cont
+    },
 
-        if (aux) {
-            fetch(URL)
-        }
+    registerUser: function(URL, form) {
+        const formData = new FormData(form)
+        fetch(URL, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => {
+            res.text()
+            .then(value => {
+                console.log(value)
+            })
+        })
     }
+
 }
 
-const URL = '../../controller/controller.php'
-const elName = document.querySelector('#name')
-const elEmail = document.querySelector('#email')
-const elPassword = document.querySelector('#password')
-const elPasswordConfirm = document.querySelector('#password-confirm')
+const elForm = document.querySelector('#form-register')
+elForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const URL = './src/controller/controller.php'
+    if (!RegisterUser.validation(elForm)) {
+        RegisterUser.registerUser(URL, elForm)
+    }
+})
 
-RegisterUser.validation(URL, elName, elEmail, elPassword, elPasswordConfirm)
