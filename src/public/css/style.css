@@ -1,3 +1,7 @@
-.danger-msg {
+.danger-msg-border {
     border-color: tomato;
+}
+
+.danger-msg {
+    color: tomato;
 }

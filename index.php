@@ -29,6 +29,7 @@
                     </div>
                     <div class="form-group">
                         <input type="password" name="password-confirm" id="password-confirm" class="form-control" placeholder="confirme a senha">
+                        <p id="danger-msg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     </div>
                     <button type="submit" id="btn-register" class="btn btn-success">Registrar</button>
                 </form>
