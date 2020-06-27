@@ -1,13 +1,18 @@
 <?php
-    namespace src\Models;
 
+namespace src\Models;
+require '../config/db-config.php';
+use src\Config\AuthDataBase;
 use mysqli;
 
-DEFINE('DB_USER', 'root');
-    DEFINE('DB_PASSWORD', '');
-    DEFINE('DB_HOST', 'localhost');
-    DEFINE('DB_NAME', 'test');
+class DBConnection extends AuthDataBase {
 
-    $dbcon = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-    mysqli_set_charset($dbcon, 'utf8');
+    public function connect() {
+        $dbcon = new mysqli(parent::getDB_Host(), parent::getDB_User(), parent::getDB_Password(), parent::getDB_Name());
+        mysqli_set_charset($dbcon, 'utf8');
+        return $dbcon;
+    }
+    
+}
+
 ?>

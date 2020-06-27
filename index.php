@@ -5,14 +5,14 @@
     <title>Query MySql</title>
 
     <?php
-        include_once './src/views/partiels/header-standard.php'
+        include_once './src/views/partiels/header-standard.php';
     ?>
 
     <link rel="stylesheet" href="./src/public/css/style.css">
 
 </head>
 <body>
-    
+
     <div class="container mt-4">
     
         <div class="row d-flex justify-content-center">
