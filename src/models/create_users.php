@@ -3,6 +3,7 @@
 namespace App\models;
 
 use App\models\DBConnection;
+use Error;
 
 class CreateUser {
     
@@ -57,7 +58,7 @@ class CreateUser {
                 $this->status = 200;
             }
         } catch(Error $e) {
-            echo $e->getMessage();
+            // $e->getMessage();
         }
 
     }

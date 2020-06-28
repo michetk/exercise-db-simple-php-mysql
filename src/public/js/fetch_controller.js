@@ -1,12 +1,43 @@
 'use strict'
 
+import { Msg } from './functions.js'
+
+
+// Ouvinte do submit do elForm
+const elForm = document.querySelector('#form-register')
+elForm.addEventListener('submit', async (e) => {
+    
+    e.preventDefault()
+    const URL = '/src/controller/controller.php'
+    debugger
+    const validationForm = new ValidationForm('#form-register', '#password', '#password-confirm' ,'#danger-msg', 'As Senhas não Batem')
+    const validation = validationForm.validation()
+    
+    if (validation) {
+        const registerUser = new RegisterUser(URL, '#form-register')
+        await registerUser.registerUser()
+        const status = registerUser.getStatus()
+        if (status === 200) {
+            const msg = new Msg('Danger Msg')
+            console.log('result: ' + msg.dangerMsg())
+        }
+    }
+})
+
 
 // Validação de elForm
-const ValidationForm = {
+class ValidationForm {
 
-    // Valida os dados
-    validation: function (idForm, idPassword, idPasswordConfirm, idElementDangerMsg, msgSenhasDiferentes) {
-        const elForm = document.querySelector(idForm)
+    constructor(idForm, idPassword, idPasswordConfirm, idElementDangerMsg, msgSenhasDiferentes) {
+        this.idForm = idForm
+        this.idPassword = idPassword
+        this.idPasswordConfirm = idPasswordConfirm
+        this.idElementDangerMsg = idElementDangerMsg
+        this.msgSenhasDiferentes = msgSenhasDiferentes
+    }
+
+    validation = () => {
+        const elForm = document.querySelector(this.idForm)
         let i = 0;
         let controller = true
         const formData = new FormData(elForm)
@@ -21,21 +52,24 @@ const ValidationForm = {
             i++
         })
 
-        // Verifica se senhas são iguais
-        const password = formData.get('password')
-        const passwordConfirm = formData.get('password-confirm')
+        if (!controller) {
+            return controller
+        }
+
+        const elPassword = document.querySelector(this.idPassword)
+        const elPasswordConfirm = document.querySelector(this.idPasswordConfirm) 
         
-        if (password !== passwordConfirm) {
-            const elPassword = document.querySelector(idPassword)
-            const elPasswordConfirm = document.querySelector(idPasswordConfirm) 
-            
-            const elP = document.querySelector(idElementDangerMsg)
-            const elTextNode = document.createTextNode(msgSenhasDiferentes)
+        if (elPassword.value !== elPasswordConfirm.value) {
+
+            const elP = document.querySelector(this.idElementDangerMsg)
+            const elTextNode = document.createTextNode(this.msgSenhasDiferentes)
             elP.setAttribute('class', 'danger-msg')
             elP.appendChild(elTextNode)
 
             elPassword.classList.add('danger-msg-border')
             elPasswordConfirm.classList.add('danger-msg-border')
+
+            controller = false
         }
 
         return controller
@@ -46,35 +80,34 @@ const ValidationForm = {
 
 
 // Fazer o request para o db
-const RegisterUser = {
+class RegisterUser {
 
-    // Faz o request pra o db
-    registerUser: function(URL, idForm) {
-        const elForm = document.querySelector(idForm)
+    constructor(URL, idForm) {
+        this.URL = URL
+        this.idForm = idForm
+        this.status = 503
+    }
+    
+
+    getStatus = () => {
+        return parseInt(this.status)
+    }
+    
+    registerUser = async () => {
+        
+        const elForm = document.querySelector(this.idForm)
         const formData = new FormData(elForm)
-        fetch(URL, {
+
+        
+        const res = await fetch(this.URL, {
             method: 'POST',
             body: formData
         })
-        .then(res => {
-            res.text()
-            .then(value => {
-                console.log(value)
-            })
-        })
+        const value = await res.text()
+        this.status = value
+
     }
+
 }
 
-
-
-// Ouvinte do submit do elForm
-const elForm = document.querySelector('#form-register')
-elForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-    const URL = './src/controller/controller.php'
-    const validationForm = ValidationForm.validation('#form-register', '#password', '#password-confirm' ,'#danger-msg', 'As Senhas não Batem')
-    if (validationForm) {
-        RegisterUser.registerUser(URL, '#form-register')
-    }
-})
 

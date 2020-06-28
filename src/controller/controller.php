@@ -1,12 +1,11 @@
 <?php
 namespace App\controller;
 
-require '../../vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 use App\models\CreateUser;
 class ControllerCreateUser extends CreateUser {
     
-    public function index () {
-        // echo $_POST['name'];
+    public function createUser () {
         $validation = parent::validation();
         if($validation) {
             parent::createUser();
@@ -16,6 +15,6 @@ class ControllerCreateUser extends CreateUser {
 }
 
 $controllerCreateUser = new ControllerCreateUser($_POST['name'], $_POST['email'], $_POST['password'], $_POST['password-confirm']);
-$controllerCreateUser->index();
+$controllerCreateUser->createUser();
 
 ?>
