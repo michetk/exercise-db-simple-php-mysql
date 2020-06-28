@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Config;
+namespace App\config;
 
 class AuthDataBase {
     private $DB_USER = 'root';

@@ -1,8 +1,8 @@
 <?php
 
-namespace src\Models;
-require '../models/db_connection.php';
-use src\Models\DBConnection;
+namespace App\models;
+
+use App\models\DBConnection;
 
 class CreateUser {
     
@@ -10,7 +10,7 @@ class CreateUser {
     private $email;
     private $password;
     private $passwordConfirm;
-    private $status = false;
+    private $status = 503;
 
     public function __construct($name, $email, $password, $passwordConfirm) {
         
@@ -34,6 +34,10 @@ class CreateUser {
                 return false;
             }
         }
+
+        if ($this->password !== $this->passwordConfirm) {
+            return false;
+        }
         return true;
 
     }
@@ -50,7 +54,7 @@ class CreateUser {
             mysqli_stmt_bind_param($q, 'sss', $this->name, $this->email, $passwordHash);
             mysqli_stmt_execute($q);
             if(mysqli_stmt_affected_rows($q) == 1) {
-                $this->status = true;
+                $this->status = 200;
             }
         } catch(Error $e) {
             echo $e->getMessage();

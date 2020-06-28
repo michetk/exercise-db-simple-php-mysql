@@ -1,18 +1,17 @@
 <?php
-namespace src\Controller;
+namespace App\controller;
 
-require '../models/create_users.php';
-// require './src/models/create_users.php';
-use src\Models\CreateUser;
+require '../../vendor/autoload.php';
+use App\models\CreateUser;
 class ControllerCreateUser extends CreateUser {
     
     public function index () {
-        echo $_POST['name'];
-        // $validation = parent::validation();
-        // if($validation) {
-        //     parent::createUser();
-        //     echo parent::getStatus();
-        // }
+        // echo $_POST['name'];
+        $validation = parent::validation();
+        if($validation) {
+            parent::createUser();
+            echo parent::getStatus();
+        }
     }
 }
 

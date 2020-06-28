@@ -1,8 +1,8 @@
 <?php
 
-namespace src\Models;
-require '../config/db-config.php';
-use src\Config\AuthDataBase;
+namespace App\models;
+
+use App\config\AuthDataBase;
 use mysqli;
 
 class DBConnection extends AuthDataBase {
