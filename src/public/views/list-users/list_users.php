@@ -9,6 +9,15 @@
 </head>
 <body>
     <div class="container">
+
+        <div class="row mt-5">
+            <div class="col">
+                <?php
+                    include_once $_SERVER['DOCUMENT_ROOT'] . '/src/views/partiels/msg.php';
+                 ?>
+            </div>
+        </div>
+
         <div class="row mt-5">
             <div class="col">
                 <div class="card">
@@ -45,5 +54,5 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT'] . '/src/views/partiels/doctype_bootstrap.php';
 ?>
-<script src="/src/public/js/fetch_controller_select_user.js"></script>
+<script type="module" src="/src/public/js/fetch_controller_select_user.js"></script>
 </html>

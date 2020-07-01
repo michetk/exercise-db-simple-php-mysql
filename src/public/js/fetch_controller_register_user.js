@@ -1,7 +1,5 @@
 'use strict'
-
-import { Msg } from './objects_utils.js'
-
+import { Msg } from '/src/public/js/msg.js'
 
 // Ouvinte do submit do elForm
 const elForm = document.querySelector('#form-register')
@@ -16,9 +14,16 @@ elForm.addEventListener('submit', async (e) => {
         const registerUser = new RegisterUser(URL, '#form-register')
         await registerUser.registerUser()
         const status = registerUser.getStatus()
+        
         if (status === 200) {
-            const msg = new Msg('Danger Msg')
-            console.log('result: ' + msg.dangerMsg())
+            const msg = new Msg('#alert', '#msg', 'Tudo Certo!', ' Usuário Cadastrado com Sucesso', 'alert-success')
+            msg.createMsg()
+
+        } else {
+
+            const msg = new Msg('#alert', '#msg', 'Houve um Erro!', ' Usuário NÃO foi Cadastrado.', 'alert-success')
+            msg.createMsg()
+
         }
     }
 })

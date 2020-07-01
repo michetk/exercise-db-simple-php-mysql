@@ -1,3 +1,6 @@
+import { Msg } from '/src/public/js/msg.js'
+
+
 const elBtnList = document.querySelector('#btn-list')
 elBtnList.addEventListener('click', (e) => {
     e.preventDefault()
@@ -40,7 +43,12 @@ class SelectUser {
                     })
 
                     elBodyTable.appendChild(tr)
+
+                } else {
+                    const msg = new Msg('#alert', '#msg', 'Ops!', ' Não temos Usuários no Banco de Dados', 'alert-primary')
+                    msg.createMsg()
                 }
+
             })
     }
 }

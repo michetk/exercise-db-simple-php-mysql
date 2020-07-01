@@ -12,6 +12,10 @@
 <body>
 
     <div class="container mt-4">
+
+        <?php
+            require $_SERVER['DOCUMENT_ROOT'] . '/src/views/partiels/msg.php';
+        ?>
     
         <div class="row d-flex justify-content-center">
             <div class="col col-6">
