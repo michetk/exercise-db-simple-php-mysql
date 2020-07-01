@@ -1,8 +1,9 @@
 <?php
 namespace App\controller;
-
 require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 use App\models\CreateUser;
+
+// Cria usuário
 class ControllerCreateUser extends CreateUser {
     
     public function createUser () {

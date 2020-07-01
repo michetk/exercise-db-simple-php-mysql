@@ -1,6 +1,6 @@
 'use strict'
 
-import { Msg } from './functions.js'
+import { Msg } from './objects_utils.js'
 
 
 // Ouvinte do submit do elForm
@@ -9,7 +9,6 @@ elForm.addEventListener('submit', async (e) => {
     
     e.preventDefault()
     const URL = '/src/controller/controller.php'
-    debugger
     const validationForm = new ValidationForm('#form-register', '#password', '#password-confirm' ,'#danger-msg', 'As Senhas não Batem')
     const validation = validationForm.validation()
     

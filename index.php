@@ -5,7 +5,7 @@
     <title>Query MySql</title>
 
     <?php
-        include_once $_SERVER['DOCUMENT_ROOT'] . '/src/views/partiels/header-standard.php';
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/src/views/partiels/header_standard.php';
     ?>
 
     <link rel="stylesheet" href="./src/public/css/style.css">
@@ -13,16 +13,20 @@
 </head>
 <body>
 
-    <h1>Progresso</h1>
-    <br>
-    <br>
-    <a href="/src/public/views/create-user/create-user.php">Creeate User</a>
-
-    <!-- <?php
-        phpinfo();
-
-    ?>       -->
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <h1>Progresso</h1>
+            <br>
+            <br>
+            <a href="/src/public/views/create-user/create_user.php">Creeate User</a><br>
+            <a href="/src/public/views/list-users/list_users.php">List Users</a>
+        </div>
+    </div>    
     
+</div>
+
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
