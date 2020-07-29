@@ -11,6 +11,8 @@ class ControllerCreateUser extends CreateUser {
         if($validation) {
             parent::createUser();
             echo parent::getStatus();
+        } else {
+            echo 503;
         }
     }
 }

@@ -31,7 +31,6 @@ class CreateUser {
         $datasUsers = [$this->name, $this->email, $this->password, $this->passwordConfirm];
         foreach($datasUsers as $value) {
             if($value == '') {
-                echo $value;
                 return false;
             }
         }

@@ -27,3 +27,44 @@ export class Msg {
 
 
 }
+
+export class MsgOfForm {
+    constructor(msg, idElement = '#danger-msg', placeStyle = [], msgClassStyle = 'danger-msg', classStyle = 'danger-msg-border') {
+        this.msg = msg
+        this.idElement = idElement
+        this.placeStyle = placeStyle
+        this.msgClassStyle = msgClassStyle
+        this.classStyle = classStyle
+    }
+
+
+    msgDanger = () => {
+        const elP = document.querySelector(this.idElement)
+        const elTextNode = document.createTextNode(this.msg)
+        elP.setAttribute('class', this.msgClassStyle)
+        elP.appendChild(elTextNode)
+
+        for (let i = 0; i < this.placeStyle.length; i++) {
+            this.placeStyle[i].classList.add(this.classStyle)
+        }
+    }
+
+    styleDanger = (idForm) => {
+        const elForm = document.querySelector(idForm)
+        let controller = true
+        let i = 0;
+        const formData = new FormData(elForm)
+
+        formData.forEach((element) => {
+            if (element == '') {
+                elForm[i].classList.add(this.classStyle)
+                controller = false
+            } else {
+                elForm[i].classList.remove(this.classStyle)
+            }
+            i++
+        })
+
+        return controller
+    }
+}
